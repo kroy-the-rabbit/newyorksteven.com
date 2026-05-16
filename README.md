@@ -14,28 +14,20 @@ The deployment workflow publishes the repository root as a static site. The site
 
 ## DNS
 
-Point the apex domain to GitHub Pages with these `A` records:
+In Cloudflare, point the apex domain to GitHub Pages with a DNS-only `CNAME` record:
 
 ```text
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
+Name: newyorksteven.com
+Target: kroy-the-rabbit.github.io
+Proxy status: DNS only
 ```
 
-Optional IPv6 `AAAA` records:
+If using `www.newyorksteven.com`, add another DNS-only `CNAME` record:
 
 ```text
-2606:50c0:8000::153
-2606:50c0:8001::153
-2606:50c0:8002::153
-2606:50c0:8003::153
-```
-
-If using `www.newyorksteven.com`, add a `CNAME` record pointing `www` to:
-
-```text
-kroy-the-rabbit.github.io
+Name: www
+Target: kroy-the-rabbit.github.io
+Proxy status: DNS only
 ```
 
 ## Local Preview
