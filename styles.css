@@ -770,6 +770,16 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .spotlight {
+    position: sticky;
+    top: 8px;
+    z-index: 2;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .webring-controls {
     grid-template-columns: 1fr;
   }
@@ -793,8 +803,7 @@ h1 {
     font-size: 1.2rem;
   }
 
-  .photo-grid,
-  .scoreboard {
+  .photo-grid {
     grid-template-columns: 1fr 1fr;
   }
 
