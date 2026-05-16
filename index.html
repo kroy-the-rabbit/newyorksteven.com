@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Steve Zone 9000</title>
+    <meta
+      name="description"
+      content="A 90s Geocities-style local website for Steve, certified cool guy."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="ticker" aria-label="Steve status ticker">
+          <span>*** WELCOME TO STEVE ZONE 9000 *** BEST VIEWED WITH MAXIMUM VIBES *** NO LAME ENERGY ***</span>
+        </div>
+
+        <section class="hero" aria-labelledby="site-title">
+          <img
+            class="hero-art"
+            src="assets/steve-banner.png"
+            alt="Retro 90s web banner featuring Steve's portrait with stars, lightning, and neon Geocities-style graphics."
+          >
+          <div class="hero-copy">
+            <p class="eyebrow">Est. 1977-ish</p>
+            <h1 id="site-title">Steve Zone 9000</h1>
+            <p class="tagline">Home of Steve: smooth operator, keyboard legend, snack drawer visionary.</p>
+          </div>
+        </section>
+      </header>
+
+      <main class="content-grid">
+        <aside class="sidebar" aria-label="Steve navigation">
+          <section class="panel nav-panel">
+            <h2>Navigation</h2>
+            <a href="#cool-meter">Cool Meter</a>
+            <a href="#photos">Steve Photos</a>
+            <a href="#sports">Sports Wire</a>
+            <a href="#guestbook">Guestbook</a>
+            <a href="#facts">Steve Facts</a>
+            <a href="#webring">Webring</a>
+          </section>
+
+          <section class="panel counter-panel">
+            <h2>Visitor Count</h2>
+            <div class="counter" aria-label="Visitor count">
+              <span>0</span><span>0</span><span>4</span><span>2</span><span>0</span><span>6</span>
+            </div>
+            <p>You are visitor number <strong id="visitorLabel">4206</strong>.</p>
+          </section>
+
+          <section class="panel badges">
+            <h2>Badges</h2>
+            <div class="badge-rack" aria-label="Steve achievement badges">
+              <span>HTML</span>
+              <span>COOL</span>
+              <span>LAN</span>
+              <span>WOW</span>
+            </div>
+          </section>
+        </aside>
+
+        <section class="main-column">
+          <section class="panel intro-panel">
+            <h2>About Steve</h2>
+            <p>
+              Steve is the guy who shows up with extra batteries, a mixtape labeled
+              FINAL_FINAL_2, and a calm confidence that makes dial-up sound fast.
+            </p>
+            <div class="status-strip" aria-label="Current Steve status">
+              <span class="blink">ONLINE</span>
+              <span>Roomba charged</span>
+              <span>Mood: radical</span>
+              <span>Mets hat loaded</span>
+              <span>Jets losing</span>
+            </div>
+          </section>
+
+          <section class="panel photo-panel" id="photos">
+            <h2>Steve Photo Annex</h2>
+            <div class="photo-stage">
+              <figure class="spotlight">
+                <img
+                  id="spotlightImage"
+                  src="assets/steve4.jpg"
+                  alt="Steve smiling in a bar while holding an orange citation and a police department sign."
+                >
+                <figcaption id="spotlightCaption">
+                  Citation Steve: accused of being too powerful for a normal neighborhood tavern.
+                </figcaption>
+              </figure>
+              <div class="photo-grid" aria-label="Steve photo selector">
+                <button
+                  class="photo-tile is-active"
+                  type="button"
+                  data-photo="assets/steve4.jpg"
+                  data-alt="Steve smiling in a bar while holding an orange citation and a police department sign."
+                  data-caption="Citation Steve: accused of being too powerful for a normal neighborhood tavern."
+                >
+                  <img src="assets/steve4.jpg" alt="">
+                  <span>Citation</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve1.jpg"
+                  data-alt="Steve holding a microphone in a bowling alley with neon lights and a Mets cap."
+                  data-caption="Karaoke Steve: issuing vocals from lane seven with no posted speed limit."
+                >
+                  <img src="assets/steve1.jpg" alt="">
+                  <span>Karaoke</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve2.jpg"
+                  data-alt="Steve taking a golf course selfie while wearing a Mets hat and palm tree shirt."
+                  data-caption="Golf Steve: outdoors, suspiciously calm, Mets cap operational."
+                >
+                  <img src="assets/steve2.jpg" alt="">
+                  <span>Golf</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve3.jpg"
+                  data-alt="Steve smiling in a dark club with arcade lights and people in the background."
+                  data-caption="Night Steve: captured during a rare arcade-adjacent power surge."
+                >
+                  <img src="assets/steve3.jpg" alt="">
+                  <span>Nightlife</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve5.jpg"
+                  data-alt="Steve sitting at a red drum kit while a singer leans in with a microphone."
+                  data-caption="Drummer Steve: giving Lars a polite reminder that tempo is a shared responsibility."
+                >
+                  <img src="assets/steve5.jpg" alt="">
+                  <span>Drums</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve6.jpg"
+                  data-alt="A tiny white helmeted toy figure standing on a wood floor."
+                  data-caption="Steve said he was 'working remotely'... turns out he meant from the Outer Rim."
+                >
+                  <img src="assets/steve6.jpg" alt="">
+                  <span>Mini</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve9.jpg"
+                  data-alt="Close-up of a black Converse All Star high-top sneaker."
+                  data-caption="Kicks loaded: Steve footwear entering the chat with classic high-top authority."
+                >
+                  <img src="assets/steve9.jpg" alt="">
+                  <span>Kicks</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve7.jpg"
+                  data-alt="Steve in a Mets cap holding a half chocolate and half vanilla ice cream bar."
+                  data-caption="Ice Cream Steve: weighing dessert strategy with Mets-level seriousness."
+                >
+                  <img src="assets/steve7.jpg" alt="">
+                  <span>Ice Cream</span>
+                </button>
+                <button
+                  class="photo-tile"
+                  type="button"
+                  data-photo="assets/steve8.jpg"
+                  data-alt="Close-up selfie of Steve smiling intensely."
+                  data-caption="Close-Up Steve: pure smile energy at unsafe magnification."
+                >
+                  <img src="assets/steve8.jpg" alt="">
+                  <span>Close-Up</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel meter-panel" id="cool-meter">
+            <h2>Steve Cool Meter</h2>
+            <div class="meter" aria-label="Steve cool meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" role="meter">
+              <div class="meter-fill"></div>
+            </div>
+            <p class="meter-caption">
+              Current reading: <strong>0% -> 100%</strong>. Scientific result: recurring detonation.
+            </p>
+          </section>
+
+          <section class="panel sports-panel" id="sports">
+            <h2>Steve Sports Wire</h2>
+            <div class="score-list" aria-label="Unofficial Steve sports scores">
+              <article class="score-card">
+                <h3>Baseball</h3>
+                <div class="score-line">
+                  <span>Expensive Roster</span>
+                  <strong>9</strong>
+                  <span>Mets</span>
+                  <strong>7</strong>
+                </div>
+                <p>A close one, but payroll depth had fresh legs in the late innings.</p>
+              </article>
+              <article class="score-card">
+                <h3>Football</h3>
+                <div class="score-line">
+                  <span>Preseason Optimism</span>
+                  <strong>31</strong>
+                  <span>Jets</span>
+                  <strong>24</strong>
+                </div>
+                <p>The vibes looked great in warmups. Then the regular season showed up with paperwork.</p>
+              </article>
+              <article class="score-card">
+                <h3>Hockey</h3>
+                <div class="score-line">
+                  <span>Rangers</span>
+                  <strong>4</strong>
+                  <span>Islanders</span>
+                  <strong>2</strong>
+                </div>
+                <p>The sweaters looked great. The Rangers were rude enough to keep score.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel facts-panel" id="facts">
+            <h2>Random Steve Fact</h2>
+            <p id="steveFact" class="fact-text">Steve can parallel park a browser window.</p>
+            <button class="button-90s" type="button" id="factButton">New Steve Fact</button>
+          </section>
+
+          <section class="panel guestbook" id="guestbook">
+            <h2>Guestbook</h2>
+            <form id="guestbookForm" class="guestbook-form">
+              <label>
+                Name
+                <input name="name" maxlength="24" value="Internet Pal" autocomplete="name">
+              </label>
+              <label>
+                Message
+                <input name="message" maxlength="72" value="Steve rules this corner of cyberspace.">
+              </label>
+              <button class="button-90s" type="submit">Sign Guestbook</button>
+            </form>
+            <div class="guestbook-entries" id="guestbookEntries" aria-live="polite">
+              <article>
+                <strong>Webmaster</strong>
+                <p>Remember to hydrate and respect Steve.</p>
+              </article>
+              <article>
+                <strong>Guest_31337</strong>
+                <p>This page has the energy of a brand-new mousepad.</p>
+              </article>
+              <article>
+                <strong>NickelbackFan420</strong>
+                <p>Steve said "just one Nickelback song" and somehow the whole room knew every word.</p>
+              </article>
+              <article>
+                <strong>KiaSpotter</strong>
+                <p>Saw Steve's Kia downtown. Compact? Yes. Emotionally enormous? Also yes</p>
+              </article>
+              <article>
+                <strong>GolfRumorDept</strong>
+                <p>Unconfirmed report: Steve is entering the Masters next year if he can find his ball.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel webring" id="webring">
+            <h2>Steve Webring</h2>
+            <div class="webring-controls" aria-label="Steve webring links">
+              <button class="button-90s" type="button" id="prevRing">Previous</button>
+              <span id="ringName">Steve's Cool Links</span>
+              <button class="button-90s" type="button" id="nextRing">Next</button>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Made locally for Steve. Optimized for vibes, CRT glow, and unreasonable table borders.</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
