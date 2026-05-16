@@ -56,10 +56,6 @@ photoTiles.forEach((tile) => {
     spotlightImage.src = tile.dataset.photo;
     spotlightImage.alt = tile.dataset.alt;
     spotlightCaption.textContent = tile.dataset.caption;
-
-    if (window.matchMedia("(max-width: 820px)").matches) {
-      spotlightImage.closest(".spotlight").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   });
 });
 

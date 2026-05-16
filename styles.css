@@ -495,6 +495,8 @@ h1 {
   background: #000;
   font-family: "Courier New", monospace;
   font-weight: 900;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .score-line strong {
@@ -766,7 +768,8 @@ h1 {
   }
 
   .photo-stage,
-  .team-grid {
+  .team-grid,
+  .score-list {
     grid-template-columns: 1fr;
   }
 
@@ -777,7 +780,26 @@ h1 {
   }
 
   .photo-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    gap: 8px;
+    margin-inline: -14px;
+    overflow-x: auto;
+    padding: 2px 14px 10px;
+    scroll-snap-type: x proximity;
+  }
+
+  .photo-tile {
+    flex: 0 0 92px;
+    min-width: 92px;
+    scroll-snap-align: start;
+  }
+
+  .photo-tile img {
+    aspect-ratio: 1 / 1;
+  }
+
+  .photo-tile span {
+    font-size: 0.78rem;
   }
 
   .webring-controls {
@@ -803,11 +825,16 @@ h1 {
     font-size: 1.2rem;
   }
 
-  .photo-grid {
-    grid-template-columns: 1fr 1fr;
+  .photo-tile {
+    flex-basis: 84px;
+    min-width: 84px;
   }
 
-  .sports-controls .button-90s {
-    width: 100%;
+  .score-card {
+    min-height: 0;
+  }
+
+  .score-line {
+    grid-template-columns: minmax(0, 1fr) 38px;
   }
 }
