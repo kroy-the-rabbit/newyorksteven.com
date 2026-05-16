@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Steve Zone favicon">
+  <rect width="64" height="64" rx="8" fill="#000083"/>
+  <path d="M10 48h44v8H10z" fill="#ff8a00"/>
+  <path d="M13 29c2-12 12-20 25-18 10 2 16 10 17 21H13z" fill="#1b35ff"/>
+  <path d="M8 33h48c-3 7-12 10-25 9-11-1-19-4-23-9z" fill="#ff8a00"/>
+  <path d="M21 25h22v6H27v5h15v6H21V25z" fill="#fff200"/>
+  <path d="M16 12h5v5h-5zM45 11h5v5h-5zM50 43h4v4h-4zM10 42h4v4h-4z" fill="#66ff00"/>
+  <path d="M24 18h16v4H24z" fill="#00e5ff"/>
+</svg>

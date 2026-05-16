@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://newyorksteven.com/sitemap.xml

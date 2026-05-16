@@ -1,0 +1,17 @@
+{
+  "name": "New York Steven",
+  "short_name": "Steve Zone",
+  "description": "A 90s Geocities-style homepage for Steve.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#070012",
+  "theme_color": "#000083",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
