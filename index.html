@@ -43,6 +43,16 @@
         "inLanguage": "en-US"
       }
     </script>
+    <script>
+      (() => {
+        const themes = ["starfield", "desktop", "arcade", "starwars"];
+        const previousTheme = localStorage.getItem("steveTheme");
+        const candidates = themes.filter((theme) => theme !== previousTheme);
+        const nextTheme = candidates[Math.floor(Math.random() * candidates.length)] || themes[0];
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem("steveTheme", nextTheme);
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -263,6 +273,16 @@
                   <strong>2</strong>
                 </div>
                 <p>The sweaters looked great. The Rangers were rude enough to keep score.</p>
+              </article>
+              <article class="score-card">
+                <h3>Wrestling</h3>
+                <div class="score-line">
+                  <span>Emperor Palpatine &amp; Rangers</span>
+                  <strong>KO</strong>
+                  <span>Jets &amp; Mets</span>
+                  <strong>0</strong>
+                </div>
+                <p>Battle royale cage match. The tag team had heart, but the lightning and forecheck were a lot.</p>
               </article>
             </div>
           </section>
