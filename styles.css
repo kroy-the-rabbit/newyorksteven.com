@@ -661,6 +661,10 @@ h1 {
   color: #ffb7f0;
 }
 
+.solo-combatant {
+  grid-column: 1 / -1;
+}
+
 .versus {
   min-width: 44px;
   color: #fff;
