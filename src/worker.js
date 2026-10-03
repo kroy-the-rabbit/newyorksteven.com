@@ -42,12 +42,7 @@ async function recordVisit(env) {
 
 async function listEntries(env) {
   const { results } = await env.DB
-    // Visitor posts newest first, then the original seeded entries in random order.
-    .prepare(`
-      SELECT id, name, message, created_at FROM guestbook
-      ORDER BY ip_hash = 'seed', CASE WHEN ip_hash = 'seed' THEN random() ELSE -id END
-      LIMIT ?
-    `)
+    .prepare("SELECT id, name, message, created_at FROM guestbook ORDER BY created_at DESC, id DESC LIMIT ?")
     .bind(GUESTBOOK_PAGE_SIZE)
     .all();
   return json({ entries: results });

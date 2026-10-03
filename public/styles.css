@@ -826,6 +826,20 @@ h1 {
   margin: 0;
 }
 
+.guestbook-entries header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.guestbook-entries time {
+  color: #555;
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  font-weight: 900;
+}
+
 .webring {
   background-color: #e7d6ff;
 }

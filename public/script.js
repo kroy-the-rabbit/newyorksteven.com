@@ -47,14 +47,31 @@ function shuffleItems(items) {
   return shuffled;
 }
 
-function createGuestbookEntry(name, message) {
+function formatEntryDate(createdAt) {
+  // D1 stores UTC as "YYYY-MM-DD HH:MM:SS"; show it as a New York calendar date.
+  const date = new Date(`${createdAt.replace(" ", "T")}Z`);
+
+  return date.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric"
+  });
+}
+
+function createGuestbookEntry({ name, message, created_at: createdAt }) {
   const entry = document.createElement("article");
+  const entryHeader = document.createElement("header");
   const entryName = document.createElement("strong");
+  const entryDate = document.createElement("time");
   const entryMessage = document.createElement("p");
 
   entryName.textContent = name;
+  entryDate.dateTime = `${createdAt.replace(" ", "T")}Z`;
+  entryDate.textContent = formatEntryDate(createdAt);
   entryMessage.textContent = message;
-  entry.append(entryName, entryMessage);
+  entryHeader.append(entryName, entryDate);
+  entry.append(entryHeader, entryMessage);
 
   return entry;
 }
@@ -84,8 +101,8 @@ async function api(path, options = {}) {
 function renderGuestbook(entries) {
   const fragment = document.createDocumentFragment();
 
-  entries.forEach(({ name, message }) => {
-    fragment.append(createGuestbookEntry(name, message));
+  entries.forEach((entry) => {
+    fragment.append(createGuestbookEntry(entry));
   });
 
   guestbookEntries.replaceChildren(fragment);
@@ -248,7 +265,7 @@ guestbookForm.addEventListener("submit", async (event) => {
     });
 
     if (entry) {
-      guestbookEntries.prepend(createGuestbookEntry(entry.name, entry.message));
+      guestbookEntries.prepend(createGuestbookEntry(entry));
     }
     guestbookStatus.textContent = "Signed! Steve has been notified.";
   } catch (error) {
