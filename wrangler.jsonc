@@ -16,6 +16,7 @@
     }
   ],
   "routes": [
-    { "pattern": "staging.newyorksteven.com", "custom_domain": true }
+    { "pattern": "newyorksteven.com", "custom_domain": true },
+    { "pattern": "www.newyorksteven.com", "custom_domain": true }
   ]
 }
