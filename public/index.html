@@ -303,8 +303,13 @@
                 Message
                 <input name="message" maxlength="72" value="Steve rules this corner of cyberspace.">
               </label>
+              <label class="guestbook-trap" aria-hidden="true">
+                Website
+                <input name="website" tabindex="-1" autocomplete="off">
+              </label>
               <button class="button-90s" type="submit">Sign Guestbook</button>
             </form>
+            <p class="guestbook-status" id="guestbookStatus" role="status"></p>
             <div class="guestbook-entries" id="guestbookEntries" aria-live="polite"></div>
           </section>
 

@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "newyorksteven",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "steve-db",
+      "database_id": "8e0e2ca2-892e-42b0-a1b4-f7372fe77992",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "routes": [
+    { "pattern": "staging.newyorksteven.com", "custom_domain": true }
+  ]
+}

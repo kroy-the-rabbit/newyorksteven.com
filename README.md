@@ -1,35 +1,48 @@
 # New York Steven
 
-A static 90s Geocities-inspired homepage for Steve.
+A 90s Geocities-inspired homepage for Steve, served by a Cloudflare Worker.
+The visitor counter and guestbook are stored in Cloudflare D1 (SQLite).
 
-## GitHub Pages
-
-This repo is configured for GitHub Pages with the custom domain:
-
-```text
-newyorksteven.com
-```
-
-The deployment workflow publishes the repository root as a static site. The site entry point is `index.html`.
-
-## DNS
-
-In Cloudflare, point the apex domain to GitHub Pages with a DNS-only `CNAME` record:
+## Layout
 
 ```text
-Name: newyorksteven.com
-Target: kroy-the-rabbit.github.io
-Proxy status: DNS only
+public/       static site (HTML, CSS, JS, images)
+src/worker.js API routes, falls through to static files
+migrations/   D1 schema and the original guestbook entries
 ```
 
-If using `www.newyorksteven.com`, add another DNS-only `CNAME` record:
+## API
 
-```text
-Name: www
-Target: kroy-the-rabbit.github.io
-Proxy status: DNS only
+| Route                 | Does                                              |
+|-----------------------|---------------------------------------------------|
+| `GET /api/visit`      | Current visitor count                             |
+| `POST /api/visit`     | Add one visit, return the new count               |
+| `GET /api/guestbook`  | Up to 50 entries: visitor posts newest first, then the originals shuffled |
+| `POST /api/guestbook` | `{ name, message }`; 3 posts per IP per 10 minutes |
+
+## Local development
+
+Everything runs in Docker (Podman works too).
+
+```sh
+docker compose up --build
 ```
 
-## Local Preview
+Open http://localhost:8787. Local D1 data lives in `.wrangler/` and survives restarts.
+Delete `.wrangler/` to reset to the seeded state.
 
-Open `index.html` directly in a browser.
+## First deploy
+
+1. Create a Cloudflare API token with the "Edit Cloudflare Workers" template plus D1 edit permission.
+2. The D1 database `steve-db` already exists and its id is in `wrangler.jsonc`.
+3. In Cloudflare DNS, delete the `newyorksteven.com` and `www` CNAME records that point to GitHub Pages.
+   The Worker creates its own records for the custom domains on deploy.
+4. Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as GitHub Actions secrets.
+5. Push to `main`. The workflow applies migrations and deploys.
+6. In the GitHub repo settings, disable GitHub Pages.
+
+Optional: set a salt for the hashed IPs used by the rate limiter:
+
+```sh
+docker compose run --rm site npx wrangler secret put IP_SALT
+```

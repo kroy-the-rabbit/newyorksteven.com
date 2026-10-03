@@ -777,6 +777,21 @@ h1 {
   background: #fff;
 }
 
+.guestbook-form .guestbook-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.guestbook-status {
+  min-height: 1.2em;
+  margin: 8px 0 0;
+  font-family: "Courier New", monospace;
+  font-weight: 900;
+}
+
 .guestbook-entries {
   display: grid;
   gap: 10px;

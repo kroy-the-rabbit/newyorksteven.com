@@ -1,0 +1,16 @@
+services:
+  site:
+    build: .
+    command: npm run dev
+    ports:
+      - "8787:8787"
+    volumes:
+      - .:/app:Z
+      - node_modules:/app/node_modules
+    environment:
+      WRANGLER_SEND_METRICS: "false"
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
+      CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+
+volumes:
+  node_modules:
