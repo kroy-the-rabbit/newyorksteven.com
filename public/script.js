@@ -136,6 +136,75 @@ async function loadVisits() {
 
 loadVisits();
 
+const coolPanel = document.querySelector(".meter-panel");
+const coolMeter = document.querySelector(".meter");
+const coolReading = document.querySelector("#coolReading");
+const coolVerdict = document.querySelector("#coolVerdict");
+const detonationThreshold = 90;
+const coolVerdicts = [
+  { min: 90, text: "Scientific result: recurring detonation." },
+  { min: 70, text: "Mets hat at full broadcast power." },
+  { min: 45, text: "Solidly radical. Roomba is impressed." },
+  { min: 20, text: "Running on dial-up. Steve is buffering." },
+  { min: 0, text: "Jets-level slump. Please send snacks." }
+];
+
+function steveHourKey(date) {
+  // Everyone sees the same reading: the clock is pinned to New York.
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(date);
+  const part = (type) => parts.find((item) => item.type === type).value;
+
+  return `${part("year")}-${part("month")}-${part("day")}T${part("hour")}`;
+}
+
+function fnv1a(text) {
+  let hash = 0x811c9dc5;
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+
+  // Murmur3 finalizer: neighboring hours otherwise produce evenly spaced readings.
+  hash ^= hash >>> 16;
+  hash = Math.imul(hash, 0x85ebca6b);
+  hash ^= hash >>> 13;
+  hash = Math.imul(hash, 0xc2b2ae35);
+  hash ^= hash >>> 16;
+
+  return hash >>> 0;
+}
+
+let coolHourKey = "";
+
+function updateCoolMeter() {
+  const hourKey = steveHourKey(new Date());
+
+  if (hourKey === coolHourKey) {
+    return;
+  }
+
+  coolHourKey = hourKey;
+  const reading = fnv1a(`steve-cool:${hourKey}`) % 101;
+  const detonating = reading >= detonationThreshold;
+
+  coolMeter.style.setProperty("--cool", String(reading / 100));
+  coolMeter.setAttribute("aria-valuenow", String(reading));
+  coolPanel.classList.toggle("is-detonating", detonating);
+  coolReading.textContent = `${reading}%`;
+  coolVerdict.textContent = coolVerdicts.find(({ min }) => reading >= min).text;
+}
+
+updateCoolMeter();
+setInterval(updateCoolMeter, 60 * 1000);
+
 factButton.addEventListener("click", () => {
   factIndex = (factIndex + 1) % steveFacts.length;
   factText.textContent = steveFacts[factIndex];

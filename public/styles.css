@@ -443,13 +443,19 @@ h1 {
   z-index: 1;
 }
 
-.meter-panel {
+.meter-panel.is-detonating {
   animation: coolPanelBlast 5.8s steps(3) infinite;
 }
 
-.meter-panel::before,
-.meter-panel::after {
+.meter-panel.is-detonating::before,
+.meter-panel.is-detonating::after {
   animation: burstMark 5.8s steps(4) infinite;
+}
+
+.meter-note {
+  margin: 6px 0 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
 }
 
 .photo-panel {
@@ -534,6 +540,11 @@ h1 {
   background:
     repeating-linear-gradient(45deg, var(--acid) 0 14px, var(--yellow) 14px 28px, var(--hot-pink) 28px 42px);
   transform-origin: left;
+  transform: scaleX(var(--cool, 0));
+  animation: fillToReading 1.6s ease-out, pulseMeter 0.5s steps(4) infinite;
+}
+
+.is-detonating .meter-fill {
   animation: fillAndExplode 5.8s linear infinite, pulseMeter 0.5s steps(4) infinite;
 }
 
@@ -914,6 +925,16 @@ h1 {
   96% {
     opacity: 0;
     transform: scale(2.1) rotate(-18deg);
+  }
+}
+
+@keyframes fillToReading {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(var(--cool, 0));
   }
 }
 
