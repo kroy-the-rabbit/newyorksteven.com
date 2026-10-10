@@ -376,7 +376,11 @@ h1 {
   background-color: #d6ff7c;
 }
 
-.intro-panel p,
+.intro-panel p {
+  margin: 0;
+  font-weight: 800;
+}
+
 .meter-caption,
 .fact-text {
   font-size: 1.1rem;
@@ -384,18 +388,27 @@ h1 {
 }
 
 .status-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.status-strip span {
-  padding: 6px 8px;
-  border: 2px dashed #000;
-  background: #fff;
+.status-strip li {
+  padding: 5px 8px;
+  border: 2px dashed #777;
+  color: #777;
+  background: #e8e8e8;
   font-family: "Courier New", monospace;
   font-weight: 900;
+}
+
+.status-strip li.is-lit {
+  border: 2px solid #000;
+  color: #ff00cc;
+  background: var(--yellow);
+  box-shadow: 2px 2px 0 #000;
 }
 
 .blink {

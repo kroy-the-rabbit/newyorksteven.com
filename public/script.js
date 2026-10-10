@@ -221,6 +221,20 @@ function updateCoolMeter() {
   coolPanel.classList.toggle("is-detonating", detonating);
   coolReading.textContent = `${reading}%`;
   coolVerdict.textContent = coolVerdicts.find(({ min }) => reading >= min).text;
+  updateStatusLights(coolKey);
+}
+
+function updateStatusLights(coolKey) {
+  const lights = Array.from(document.querySelectorAll(".status-strip li"));
+  const bits = fnv1a(`steve-status:${coolKey}`);
+  // Bit pattern picks the lit tags; an all-dark pattern falls back to one tag.
+  const lit = lights.map((_, index) => Boolean(bits & (1 << index)));
+
+  if (!lit.includes(true)) {
+    lit[bits % lights.length] = true;
+  }
+
+  lights.forEach((light, index) => light.classList.toggle("is-lit", lit[index]));
 }
 
 updateCoolMeter();
