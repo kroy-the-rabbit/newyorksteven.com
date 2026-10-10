@@ -166,7 +166,9 @@ const coolVerdicts = [
   { min: 0, text: "Jets-level slump. Please send snacks." }
 ];
 
-function steveHourKey(date) {
+const coolIntervalMinutes = 5;
+
+function steveCoolKey(date) {
   // Everyone sees the same reading: the clock is pinned to New York.
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -174,11 +176,13 @@ function steveHourKey(date) {
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
+    minute: "2-digit",
     hourCycle: "h23"
   }).formatToParts(date);
   const part = (type) => parts.find((item) => item.type === type).value;
+  const slot = Math.floor(Number(part("minute")) / coolIntervalMinutes) * coolIntervalMinutes;
 
-  return `${part("year")}-${part("month")}-${part("day")}T${part("hour")}`;
+  return `${part("year")}-${part("month")}-${part("day")}T${part("hour")}:${String(slot).padStart(2, "0")}`;
 }
 
 function fnv1a(text) {
@@ -199,17 +203,17 @@ function fnv1a(text) {
   return hash >>> 0;
 }
 
-let coolHourKey = "";
+let currentCoolKey = "";
 
 function updateCoolMeter() {
-  const hourKey = steveHourKey(new Date());
+  const coolKey = steveCoolKey(new Date());
 
-  if (hourKey === coolHourKey) {
+  if (coolKey === currentCoolKey) {
     return;
   }
 
-  coolHourKey = hourKey;
-  const reading = fnv1a(`steve-cool:${hourKey}`) % 101;
+  currentCoolKey = coolKey;
+  const reading = fnv1a(`steve-cool:${coolKey}`) % 101;
   const detonating = reading >= detonationThreshold;
 
   coolMeter.style.setProperty("--cool", String(reading / 100));
@@ -220,7 +224,7 @@ function updateCoolMeter() {
 }
 
 updateCoolMeter();
-setInterval(updateCoolMeter, 60 * 1000);
+setInterval(updateCoolMeter, 10 * 1000);
 
 factButton.addEventListener("click", () => {
   factIndex = (factIndex + 1) % steveFacts.length;
@@ -246,12 +250,25 @@ photoTiles.forEach((tile) => {
 
 loadGuestbook();
 
+const guestbookSubmit = guestbookForm.querySelector("button[type=submit]");
+const guestbookName = guestbookForm.elements.name;
+const guestbookMessage = guestbookForm.elements.message;
+let guestbookSending = false;
+
+function updateGuestbookSubmit() {
+  const filledIn = guestbookName.value.trim() !== "" && guestbookMessage.value.trim() !== "";
+  guestbookSubmit.disabled = guestbookSending || !filledIn;
+}
+
+guestbookForm.addEventListener("input", updateGuestbookSubmit);
+updateGuestbookSubmit();
+
 guestbookForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(guestbookForm);
-  const submitButton = guestbookForm.querySelector("button[type=submit]");
 
-  submitButton.disabled = true;
+  guestbookSending = true;
+  updateGuestbookSubmit();
   guestbookStatus.textContent = "Transmitting at 56k...";
 
   try {
@@ -267,11 +284,13 @@ guestbookForm.addEventListener("submit", async (event) => {
     if (entry) {
       guestbookEntries.prepend(createGuestbookEntry(entry));
     }
+    guestbookMessage.value = "";
     guestbookStatus.textContent = "Signed! Steve has been notified.";
   } catch (error) {
     guestbookStatus.textContent = error.message;
   } finally {
-    submitButton.disabled = false;
+    guestbookSending = false;
+    updateGuestbookSubmit();
   }
 });
 

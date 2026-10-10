@@ -758,7 +758,13 @@ h1 {
   cursor: pointer;
 }
 
-.button-90s:active {
+.button-90s:disabled {
+  color: #808080;
+  text-shadow: 1px 1px 0 #fff;
+  cursor: not-allowed;
+}
+
+.button-90s:active:not(:disabled) {
   border-style: inset;
   box-shadow: 1px 1px 0 #000;
   transform: translate(2px, 2px);

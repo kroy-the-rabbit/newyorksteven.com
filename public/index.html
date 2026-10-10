@@ -132,7 +132,7 @@
               Current reading: <strong id="coolReading">--%</strong>.
               <span id="coolVerdict">Calibrating the Steve sensors...</span>
             </p>
-            <p class="meter-note">Recalibrated hourly on Steve Standard Time (New York).</p>
+            <p class="meter-note">Recalibrated every 5 minutes on Steve Standard Time (New York).</p>
           </section>
 
           <section class="panel photo-panel" id="photos">
@@ -299,17 +299,17 @@
             <form id="guestbookForm" class="guestbook-form">
               <label>
                 Name
-                <input name="name" maxlength="24" value="Internet Pal" autocomplete="name">
+                <input name="name" maxlength="24" placeholder="Internet Pal" autocomplete="name" required>
               </label>
               <label>
                 Message
-                <input name="message" maxlength="72" value="Steve rules this corner of cyberspace.">
+                <input name="message" maxlength="72" placeholder="Steve rules this corner of cyberspace." required>
               </label>
               <label class="guestbook-trap" aria-hidden="true">
                 Website
                 <input name="website" tabindex="-1" autocomplete="off">
               </label>
-              <button class="button-90s" type="submit">Sign Guestbook</button>
+              <button class="button-90s" type="submit" disabled>Sign Guestbook</button>
             </form>
             <p class="guestbook-status" id="guestbookStatus" role="status"></p>
             <div class="guestbook-entries" id="guestbookEntries" aria-live="polite"></div>

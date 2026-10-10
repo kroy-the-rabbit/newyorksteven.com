@@ -11,14 +11,12 @@ function json(data, status = 200) {
   });
 }
 
-function cleanText(value, limit, fallback) {
-  const text = String(value ?? "")
+function cleanText(value, limit) {
+  return String(value ?? "")
     .replace(/[\u0000-\u001f\u007f]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, limit);
-
-  return text || fallback;
 }
 
 async function hashIp(ip, salt) {
@@ -62,8 +60,12 @@ async function createEntry(request, env) {
     return json({ ok: true }, 201);
   }
 
-  const name = cleanText(body.name, NAME_LIMIT, "Anonymous");
-  const message = cleanText(body.message, MESSAGE_LIMIT, "Steve rules.");
+  const name = cleanText(body.name, NAME_LIMIT);
+  const message = cleanText(body.message, MESSAGE_LIMIT);
+
+  if (!name || !message) {
+    return json({ error: "Steve needs both a name and a message." }, 400);
+  }
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
   const ipHash = await hashIp(ip, env.IP_SALT || "steve-zone-9000");
 
